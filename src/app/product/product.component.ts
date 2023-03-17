@@ -36,6 +36,7 @@ export class ProductComponent {
   }
 
   addToCart(product: Product) {
+    this.cartService.addToCart(product);
     this.messageService.add({
       severity: 'success',
       detail: 'Se agrega al carrito de compras',
