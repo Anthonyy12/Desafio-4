@@ -19,6 +19,11 @@
     alt="Sin imagen"
   />
   <button type="button" (click)="addToCart(product)">Buy</button>
+  <p-toast
+    position="top-center"
+    style="position: absolute;top: 40px; left: 40px;"
+  >
+  </p-toast>
 </p-dialog>
 
 <p *ngIf="product.description">{{ product.description }}</p>
@@ -27,12 +32,6 @@
 
 <app-product-alerts [product]="product" (notify)="onNotify()">
 </app-product-alerts>
-
-<p-toast
-  position="top-center"
-  style="position: absolute;top: 40px; left: 40px;"
->
-</p-toast>
 
 <!--
 <p-button type="button" (click)="addToCart(product)">
