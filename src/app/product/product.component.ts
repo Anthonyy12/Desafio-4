@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product, products } from '../products';
+import { Product, products, CartProduct } from '../products';
 import { CartService } from '../cart.service';
 import { MessageService } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
@@ -25,6 +25,8 @@ export class ProductComponent {
     this.display = true;
   }
 
+  productos = this.cartService.getItems();
+
   constructor(
     private cartService: CartService,
     private messageService: MessageService,
@@ -36,7 +38,22 @@ export class ProductComponent {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    //Buscar id del producto
+    let producto = this.productos.find((p) => p.id === product.id);
+
+    if (!producto) {
+      console.log('Agregando producto ' + JSON.stringify(product));
+      let p = {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        images: product.images,
+        quantity: 1,
+      };
+      this.cartService.addToCart(p);
+    }
+
     this.messageService.add({
       severity: 'success',
       detail: 'Se agrega al carrito de compras',

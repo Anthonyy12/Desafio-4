@@ -8,6 +8,8 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent {
   products = this.cartService.getItems();
+  items = this.cartService.getItems();
+  total = this.cartService.getTotal();
 
   constructor(private cartService: CartService) {}
 }
